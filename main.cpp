@@ -77,7 +77,7 @@ int main() {
     
     cout << "post lambda. x = " << x << endl;
 
-    vector<int> num {1,2,3,4,5,6,7,8,9};
+    vector<int> num {1,2,3,4,5,6,7,8,9,10};
     auto t = num | std::views::filter([] (int c) {return (c % 2 == 0);});
     for(int m : t)
     {
