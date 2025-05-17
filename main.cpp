@@ -84,7 +84,7 @@ int main() {
         cout << "t = " << m << endl;
     }
 
-
+    cout "Programma TERMINATO"; 
 
     return 0;
 }
