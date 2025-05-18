@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'gcc:latest' // Usa un'immagine Docker con GCC
+            args '-v /c/ProgramData/Jenkins/.jenkins/workspace/rovacpp-multibranch_experimental:/workspace -w /workspace'
         }
     }
 
