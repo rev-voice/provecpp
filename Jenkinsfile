@@ -2,12 +2,13 @@ pipeline {
     agent {
         docker {
             image 'gcc:latest'
+            args '-v /c/ProgramData/Jenkins/.jenkins:/workspace -w /workspace'
         }
     }
 
-    environment {
-        WORKSPACE_UNIX = '/workspace'
-    }
+   // //environment {
+    //    WORKSPACE_UNIX = '/workspace'
+   // }
 
     stages {
         stage('Checkout') {
