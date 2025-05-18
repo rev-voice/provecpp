@@ -2,11 +2,11 @@ pipeline {
     agent {
         docker {
             image 'gcc:latest'
-            args '-v /c/ProgramData/Jenkins/.jenkins:/workspace -w /workspace'
+            args '-v /c/ProgramData/Jenkins/.jenkins/workspace/rovacpp-multibranch_experimental:/workspace -w /workspace'
         }
     }
 
-   environment {
+    environment {
         WORKSPACE_UNIX = '/workspace'
     }
 
