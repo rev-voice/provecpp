@@ -2,7 +2,6 @@ pipeline {
     agent {
         docker {
             image 'gcc:latest'
-            args "-v $WORKSPACE:/workspace -w /workspace"
         }
     }
 
