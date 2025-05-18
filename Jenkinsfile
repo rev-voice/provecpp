@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'gcc:latest'
-            args '-v /c/ProgramData/Jenkins/.jenkins/workspace/rovacpp-multibranch_experimental:/workspace -w /workspace'
+            args "-v ${pwd()}:/workspace -w /workspace"
         }
     }
 
