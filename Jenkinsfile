@@ -6,9 +6,9 @@ pipeline {
         }
     }
 
-   // //environment {
-    //    WORKSPACE_UNIX = '/workspace'
-   // }
+   environment {
+        WORKSPACE_UNIX = '/workspace'
+    }
 
     stages {
         stage('Checkout') {
