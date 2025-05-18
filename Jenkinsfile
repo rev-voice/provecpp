@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        WORKSPACE_UNIX = '/c/ProgramData/Jenkins/.jenkins/workspace/rovacpp-multibranch_experimental'
+        WORKSPACE_UNIX = '/workspace'
     }
 
     stages {
