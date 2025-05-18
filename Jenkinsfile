@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'gcc:latest' // Usa un'immagine Docker con GCC
+        }
+    }
 
     stages {
         stage('Parallel Tests') {
