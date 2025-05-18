@@ -2,14 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                bat 'dir'
-                // Usa branch 'main'
-                git branch: 'main', url: 'https://github.com/rev-voice/provecpp.git '
-            }
-        }
-
         stage('Parallel Tests') {
             failFast true // Add FailFast here
             parallel {
