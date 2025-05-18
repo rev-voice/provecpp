@@ -5,7 +5,6 @@ pipeline {
             args "-v ${pwd()}:/workspace -w /workspace"
         }
     }
-
     environment {
         WORKSPACE_UNIX = '/workspace'
     }
