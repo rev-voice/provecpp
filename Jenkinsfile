@@ -1,42 +1,26 @@
 pipeline {
     agent {
         docker {
-            image 'gcc:latest' // Usa un'immagine Docker con GCC
+            image 'gcc:latest'
             args '-v /c/ProgramData/Jenkins/.jenkins/workspace/rovacpp-multibranch_experimental:/workspace -w /workspace'
         }
     }
 
     stages {
-        stage('Parallel Tests') {
-            failFast true // Add FailFast here
-            parallel {
-                stage('Test A') {
-                    steps {
-                        bat 'echo testA'
-                        bat 'dir'
-                    }
-                }
-                stage('Test B') {
-                    steps {
-                        bat 'echo testB'
-                        sleep time: 2, unit: 'SECONDS'
-                        // Simulate an error
-                        //bat 'sh ciao errore'
-                    }
-                }
-                stage('Test C') {
-                    steps {
-                        bat 'echo testC'
-                        sleep time: 5, unit: 'SECONDS'
-                    }
-                }
+        stage('Checkout') {
+            steps {
+                git branch: 'experimental', url: 'https://github.com/rev-voice/provecpp.git '
             }
         }
 
         stage('Build') {
             steps {
                 script {
-                    bat 'g++ -std=c++20 -o main.exe main.cpp'
+                    sh '''
+                        echo "Compilazione del progetto..."
+                        g++ -std=c++20 -o main main.cpp || exit 1
+                        echo "Compilazione completata."
+                    '''
                 }
             }
         }
@@ -44,7 +28,15 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    bat '.\\main.exe'
+                    sh '''
+                        echo "Esecuzione del programma..."
+                        if [ -f main ]; then
+                            ./main
+                        else
+                            echo "Errore: file main non trovato."
+                            exit 1
+                        fi
+                    '''
                 }
             }
         }
@@ -52,7 +44,10 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: '**/main.cpp, **/main.exe', fingerprint: true
+            archiveArtifacts artifacts: '**/main.cpp, **/main', fingerprint: true
+        }
+        failure {
+            echo 'Errore durante l\'esecuzione della pipeline.'
         }
     }
 }
