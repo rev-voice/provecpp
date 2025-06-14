@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         stage('Parallel Tests') {
-            failFast true // Add FailFast here
+            failFast true // Add failFast here
             parallel {
                 stage('Test A') {
                     steps {
