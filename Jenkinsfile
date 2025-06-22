@@ -13,7 +13,7 @@ pipeline {
                 script {
                     // Pulisci eventuali container precedenti
                     bat '''
-                        docker rm -f my-build-container || true
+                        docker rm -f my-build-container
                     '''
 
                     // Esegui il container Docker con il comando desiderato
